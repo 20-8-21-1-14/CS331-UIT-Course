@@ -1,3 +1,3 @@
 # CS331-UIT-Course
 
-Learning more about computer Vision
+Learning more about Computer Vision
