@@ -13,6 +13,9 @@ def extract_feature(img_path):
     img = cv2.imread(img_path)
     img_cropped = mtcnn(img)
     resnet.classify = True
+    if img_cropped is None:
+        return 0
+
     img_probs = resnet(img_cropped.unsqueeze(0))
     return img_probs.detach().numpy()
 
@@ -33,6 +36,8 @@ while(True):
     print(x1, x2, y1, y2)
     if len(result) > 0:
         cropped_image = frame[int(y1):int(y2), int(x1):int(x2)]
+        # cv2.imshow('test', cropped_image)
+        # cv2.waitKey(0)
         resize_cropped_img = cv2.resize(cropped_image, (224, 224))
         cv2.imwrite('frame.png', resize_cropped_img)
 
