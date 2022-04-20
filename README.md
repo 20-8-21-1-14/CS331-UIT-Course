@@ -1,3 +1,3 @@
 # CS331-UIT-Course
 
-Learning more about Computer Vision
+Computer Vision Advance course in University of Information and Technology Hochiminh city
