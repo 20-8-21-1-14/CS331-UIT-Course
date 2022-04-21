@@ -61,11 +61,11 @@ vectors = []
 # Save feature's file
 vector_file = "vectors_2.pkl"
 
-vectors = pickle.load(open("Face_Recogition_system\\vectors_2.pkl", "rb"))
+vectors = pickle.load(open("vectors_2.pkl", "rb"))
 
 
 vid = cv2.VideoCapture(0)
-
+vid.set(cv2.CAP_PROP_FPS,60)
 while(True):
 
     ret, frame = vid.read()
