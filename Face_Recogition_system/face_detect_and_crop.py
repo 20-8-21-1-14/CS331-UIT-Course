@@ -2,7 +2,7 @@ import cv2
 from unittest import result
 from mtcnn import MTCNN
 import cv2
-'''
+
 # Take image from webcam
 cam = cv2.VideoCapture(0)
 
@@ -25,7 +25,7 @@ while True:
     elif k % 256 == 32:
         # SPACE pressed
         img_name = "person_{}.jpg".format(img_counter)
-        cv2.imwrite('Face_Recogition_system\\org_images\\' + img_name, frame)
+        cv2.imwrite('org_images/' + img_name, frame)
         print("{} written!".format(img_name))
         img_counter += 1
 
@@ -54,3 +54,4 @@ cv2.imwrite('Face_Recogition_system\\faces\\2.png',
 
 cv2.waitKey()
 cv2.destroyAllWindows()
+'''
