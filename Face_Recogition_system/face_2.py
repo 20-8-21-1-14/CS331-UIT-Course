@@ -59,20 +59,19 @@ data_path = './faces/'
 vectors = []
 
 # Save feature's file
-vector_file = "vectors_2.pkl"
+vector_file = "vectors.pkl"
 
-vectors = pickle.load(open("vectors_2.pkl", "rb"))
+vectors = pickle.load(open("vectors.pkl", "rb"))
 
 
 vid = cv2.VideoCapture(0)
-vid.set(cv2.CAP_PROP_FPS,60)
 while(True):
 
     ret, frame = vid.read()
 
     result = detector.detect_faces(frame)
     if len(result) > 0:
-
+        
         bounding_box = result[0]['box']
         X = bounding_box[0]
         Y = bounding_box[1]
@@ -83,14 +82,17 @@ while(True):
         cv2.imwrite('frame.png', resize_cropped_img)
 
         search_vector = extract_vector(model, './frame.png')
-        distance = np.linalg.norm(vectors - search_vector, axis=1)
-
-        label = np.argmin(distance)
+        distance = np.dot(vectors, search_vector.T) / (np.linalg.norm(vectors, axis=1)*np.linalg.norm(search_vector))
+        print(distance)
+        label = np.argmax(distance)
+        print(label)
         text = ''
         if label == 0:
-            text = 'Thuan'
+            text = 'H_Thuan'
         elif label == 1:
-            text = 'Yen'
+            text = 'Q_Truong'
+        elif label == 2:
+            text = 'Q_Tuan'    
 
         cv2.rectangle(frame,
                       (bounding_box[0], bounding_box[1]),
